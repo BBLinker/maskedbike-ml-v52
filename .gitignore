@@ -1,0 +1,48 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# Generated training/evaluation material
+outputs/
+logs/
+artifacts/
+backup/
+*.pt
+*.pth
+*.ckpt
+*.npz
+*.h5
+*.hdf5
+
+# Curated, frozen release artifact (all other generated models remain ignored)
+!published/
+!published/model_D1/
+!published/model_D1/model.pt
+!published/model_D1/preprocessing.npz
+!published/model_D2/
+!published/model_D2/model.pt
+!published/model_D2/preprocessing.npz
+
+# Installer/runtime leftovers
+install*.log
+install.pid
+=3.9
+
+# Local editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets and local configuration
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+build/
+dist/

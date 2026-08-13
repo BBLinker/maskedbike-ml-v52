@@ -1,0 +1,98 @@
+{
+  "schema": "maskedbike-qshare-semisupervised-config.v2",
+  "experiment": "masking-order-1-centered-product-cscae",
+  "seed": 8888,
+  "data_contract": {
+    "masking_order": 1,
+    "share_count": 2,
+    "share_count_rule": "q = masking_order + 1",
+    "adc_source": "clkgen_x4",
+    "j_count": 14,
+    "samples": "read and verify from each run manifest",
+    "share_intervals": "read and verify from each run manifest",
+    "j_stride_samples": "infer from the constant stride of matching_j_positions",
+    "cycle_samples": "largest uniform window that stays inside every share interval, capped at j stride",
+    "cycle_origin": "each share interval start; matching positions determine period only and never rotate a share",
+    "rounds": {
+      "labeled_negative": 0,
+      "unlabeled_adaptation": 2,
+      "labeled_positive": 7
+    }
+  },
+  "profiling": {
+    "r0_bundles": 300,
+    "r2_bundles": 200,
+    "r7_bundles": 300,
+    "expected_traces_per_bundle": 100
+  },
+  "split": {
+    "strategy": "chronological_complete_bundles",
+    "train_fraction": 0.7,
+    "validation_fraction": 0.3,
+    "group_keys": [
+      "bundle_id",
+      "case_id",
+      "trace_id"
+    ]
+  },
+  "preprocessing": {
+    "one_global_shift_per_trace": true,
+    "alignment_max_shift": 4,
+    "alignment_stride": 2,
+    "centering": "training-only mean at every [share,j,time]",
+    "centered_product": "pointwise product over all 2 centered shares at identical [j,time]",
+    "clip_percentile": 99.9,
+    "pooling": false
+  },
+  "model": {
+    "input": "normalized q-share centered product [j,time]",
+    "cscae_input_channels": 1,
+    "channels": 8,
+    "latent_ratio": 0.1,
+    "classifier_widths": [
+      256,
+      128,
+      64,
+      32
+    ],
+    "output_classes": 2
+  },
+  "training": {
+    "autoencoder_data": "R0 + unlabeled R2 + R7 profiling partitions",
+    "classifier_data": "labeled R0 and R7 only",
+    "autoencoder_epochs": 30,
+    "classifier_epochs": 100,
+    "batch_size": 512,
+    "learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "early_stopping_patience": 20,
+    "noise_std": 0.03,
+    "auxiliary_reconstruction_weight": 0.05,
+    "gradient_clip_norm": 1.0,
+    "autoencoder_selection": "validation reconstruction MSE",
+    "classifier_selection": "R0/R7 validation ROC-AUC",
+    "threshold_selection": "maximize balanced accuracy on R0/R7 validation only"
+  },
+  "evaluation": {
+    "independent_round": 2,
+    "positive_truth": "hamming_weight == 0",
+    "negative_truth": "hamming_weight != 0",
+    "metrics": [
+      "roc_auc",
+      "pr_auc",
+      "balanced_accuracy",
+      "macro_f1",
+      "mcc",
+      "confusion_matrix"
+    ]
+  },
+  "outputs": [
+    "bundle-audit.json",
+    "artifact-manifest.json",
+    "dataset-snapshot.json",
+    "preprocessing.npz",
+    "model.pt",
+    "predictions.npz",
+    "results.json"
+  ]
+}

@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maskedbike-ml"
+version = "0.7.0"
+description = "Geometry-aware q-share centered-product CSCAE pipeline for masked BIKE traces"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "h5py>=3.10",
+  "numpy>=1.26",
+  "scikit-learn>=1.4",
+  "torch>=2.2",
+  "matplotlib>=3.9"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
