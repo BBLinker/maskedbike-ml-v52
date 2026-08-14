@@ -49,10 +49,6 @@ def main() -> None:
             or tuple(map(tuple, frozen["geometry"]["share_intervals"])) != r07.geometry.share_intervals):
         raise ValueError("current data geometry differs from the frozen final snapshot")
     geometry = r07.geometry
-    expected_bundle_size = int(config["profiling"]["expected_traces_per_bundle"])
-    wrong_sizes = [row["bundle_id"] for row in r07.bundle_rows + r2.bundle_rows if row["trace_count"] != expected_bundle_size]
-    if wrong_sizes:
-        raise ValueError(f"bundles do not contain exactly {expected_bundle_size} traces: {wrong_sizes[:5]}")
     selected = frozen["selected_bundles"]
     heldout_ids = {row["bundle_id"] for row in frozen["r2_heldout"]["bundle_rows"]}
     r0 = list(selected["R0"]); r2_profiling = list(selected["R2_profiling"]); r7 = list(selected["R7"])

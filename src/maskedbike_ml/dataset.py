@@ -77,8 +77,9 @@ def load_rounds(
                 hw = np.asarray(handle["hamming_weights"], dtype=np.int64)
                 case = np.asarray(handle["case_ids"]).astype("U")
                 trace_id = np.asarray(handle["trace_ids"]).astype("U")
-            if x.ndim != 2 or x.shape[1] != geometry.samples or not (len(x) == len(hw) == len(case) == len(trace_id)):
-                raise ValueError(f"invalid H5 shape: {h5_path}")
+            if (x.ndim != 2 or x.shape[1] != geometry.samples or len(x) == 0
+                    or not (len(x) == len(hw) == len(case) == len(trace_id))):
+                raise ValueError(f"invalid H5 shape or empty bundle: {h5_path}")
             bundle_id = h5_path.name
             label = 0 if round_id == 0 else 1 if round_id == 7 else 255
             xs.append(x); ys.append(np.full(len(x), label, np.uint8)); hws.append(hw)

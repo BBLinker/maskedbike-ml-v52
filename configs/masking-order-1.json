@@ -23,7 +23,7 @@
     "r0_bundles": 300,
     "r2_bundles": 200,
     "r7_bundles": 300,
-    "expected_traces_per_bundle": 100
+    "nominal_traces_per_bundle": 100
   },
   "split": {
     "strategy": "chronological_complete_bundles",

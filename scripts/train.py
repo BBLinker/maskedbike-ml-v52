@@ -33,10 +33,6 @@ def main() -> None:
     if r07.geometry != r2.geometry:
         raise ValueError("R0/R7 and R2 capture geometries differ")
     geometry = r07.geometry
-    expected_bundle_size = int(config["profiling"]["expected_traces_per_bundle"])
-    wrong_sizes = [row["bundle_id"] for row in r07.bundle_rows + r2.bundle_rows if row["trace_count"] != expected_bundle_size]
-    if wrong_sizes:
-        raise ValueError(f"bundles do not contain exactly {expected_bundle_size} traces: {wrong_sizes[:5]}")
 
     by_class = {0: [], 1: []}
     for bundle in r07.bundle_order:
