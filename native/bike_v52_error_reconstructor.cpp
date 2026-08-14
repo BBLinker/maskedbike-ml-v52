@@ -60,8 +60,8 @@ void print_positions(const uint8_t *packed) {
 }  // namespace
 
 int main(int argc, char **argv) {
-    if (argc != 2) {
-        std::fprintf(stderr, "usage: %s KEY_SEED_HEX\n", argv[0]);
+    if (argc < 2 || argc > 3) {
+        std::fprintf(stderr, "usage: %s KEY_SEED_HEX [--key-only]\n", argv[0]);
         return 2;
     }
     uint8_t key_seed[kSeedBytes] = {0};
@@ -72,6 +72,14 @@ int main(int argc, char **argv) {
     uint8_t secret_key[CRYPTO_SECRETKEYBYTES] = {0};
     randombytes_init(key_entropy, nullptr, 256);
     if (crypto_kem_keypair(public_key, secret_key) != 0) return 3;
+    if (argc == 3) {
+        if (std::string(argv[2]) != "--key-only") return 2;
+        const sk_t *key = reinterpret_cast<const sk_t *>(secret_key);
+        print_positions(key->val0);
+        std::putchar('\t'); print_positions(key->val1);
+        std::putchar('\n');
+        return 0;
+    }
 
     std::string seed_text;
     while (std::getline(std::cin, seed_text)) {

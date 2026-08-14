@@ -1,0 +1,207 @@
+{
+  "schema": "maskedbike-stratified-error-rate.v1",
+  "dataset": "D1 first-order / two shares",
+  "heldout_traces": 11200,
+  "positive_event": "delta=1 iff hamming_weight==0 (decryptable)",
+  "threshold": 0.5403023558674432,
+  "prediction_source": "final-80000-semisupervised-predictions.npz (frozen run artifact; not distributed)",
+  "snapshot_source": "final-dataset-snapshot.json (frozen run artifact; not distributed)",
+  "distance_definition": "union of unique nonzero minimal cyclic pair distances in reconstructed e0 and e1",
+  "key_spectrum_definition": "pair-distance multiplicities summed across h0 and h1",
+  "key_support_weights": [
+    71,
+    71
+  ],
+  "key_distance_multiplicity_distribution": {
+    "1": 2196,
+    "2": 882,
+    "3": 254,
+    "4": 50,
+    "5": 6,
+    "6": 3
+  },
+  "overlap_unique_range": [
+    1626,
+    1886
+  ],
+  "requested_groups": [
+    {
+      "group": "0",
+      "n": 0,
+      "delta_1": 0,
+      "delta_0": 0,
+      "tp": 0,
+      "fn": 0,
+      "tn": 0,
+      "fp": 0,
+      "tpr": null,
+      "tpr_ci95": [
+        null,
+        null
+      ],
+      "tnr": null,
+      "tnr_ci95": [
+        null,
+        null
+      ]
+    },
+    {
+      "group": "1",
+      "n": 0,
+      "delta_1": 0,
+      "delta_0": 0,
+      "tp": 0,
+      "fn": 0,
+      "tn": 0,
+      "fp": 0,
+      "tpr": null,
+      "tpr_ci95": [
+        null,
+        null
+      ],
+      "tnr": null,
+      "tnr_ci95": [
+        null,
+        null
+      ]
+    },
+    {
+      "group": "2",
+      "n": 0,
+      "delta_1": 0,
+      "delta_0": 0,
+      "tp": 0,
+      "fn": 0,
+      "tn": 0,
+      "fp": 0,
+      "tpr": null,
+      "tpr_ci95": [
+        null,
+        null
+      ],
+      "tnr": null,
+      "tnr_ci95": [
+        null,
+        null
+      ]
+    },
+    {
+      "group": ">=3",
+      "n": 11200,
+      "delta_1": 7768,
+      "delta_0": 3432,
+      "tp": 6944,
+      "fn": 824,
+      "tn": 3180,
+      "fp": 252,
+      "tpr": 0.893923789907312,
+      "tpr_ci95": [
+        0.8869689752832132,
+        0.9007466529351185
+      ],
+      "tnr": 0.9265734265734266,
+      "tnr_ci95": [
+        0.9178321678321678,
+        0.9353146853146853
+      ]
+    }
+  ],
+  "exploratory_overlap_quantile_edges": [
+    1626.0,
+    1734.0,
+    1751.0,
+    1769.0,
+    1886.0
+  ],
+  "exploratory_groups": [
+    {
+      "group": "Q1",
+      "n": 2920,
+      "delta_1": 2016,
+      "delta_0": 904,
+      "tp": 1791,
+      "fn": 225,
+      "tn": 837,
+      "fp": 67,
+      "tpr": 0.8883928571428571,
+      "tpr_ci95": [
+        0.875,
+        0.9017857142857143
+      ],
+      "tnr": 0.9258849557522124,
+      "tnr_ci95": [
+        0.9081858407079646,
+        0.9424778761061947
+      ],
+      "fisher_tpr_vs_q1_p": 1.0,
+      "fisher_tnr_vs_q1_p": 1.0
+    },
+    {
+      "group": "Q2",
+      "n": 2743,
+      "delta_1": 1856,
+      "delta_0": 887,
+      "tp": 1680,
+      "fn": 176,
+      "tn": 818,
+      "fp": 69,
+      "tpr": 0.9051724137931034,
+      "tpr_ci95": [
+        0.8917025862068966,
+        0.9181034482758621
+      ],
+      "tnr": 0.9222096956031567,
+      "tnr_ci95": [
+        0.9041713641488163,
+        0.939120631341601
+      ],
+      "fisher_tpr_vs_q1_p": 0.0912217177399803,
+      "fisher_tnr_vs_q1_p": 0.7894933530465851
+    },
+    {
+      "group": "Q3",
+      "n": 2751,
+      "delta_1": 1941,
+      "delta_0": 810,
+      "tp": 1739,
+      "fn": 202,
+      "tn": 751,
+      "fp": 59,
+      "tpr": 0.8959299330242143,
+      "tpr_ci95": [
+        0.8820195775373518,
+        0.9093250901597115
+      ],
+      "tnr": 0.9271604938271605,
+      "tnr_ci95": [
+        0.9098765432098765,
+        0.9444444444444444
+      ],
+      "fisher_tpr_vs_q1_p": 0.4731404720498964,
+      "fisher_tnr_vs_q1_p": 0.9264763353530969
+    },
+    {
+      "group": "Q4",
+      "n": 2786,
+      "delta_1": 1955,
+      "delta_0": 831,
+      "tp": 1734,
+      "fn": 221,
+      "tn": 774,
+      "fp": 57,
+      "tpr": 0.8869565217391304,
+      "tpr_ci95": [
+        0.8731457800511508,
+        0.90076726342711
+      ],
+      "tnr": 0.9314079422382672,
+      "tnr_ci95": [
+        0.9133574007220217,
+        0.9482551143200962
+      ],
+      "fisher_tpr_vs_q1_p": 0.9199392569690183,
+      "fisher_tnr_vs_q1_p": 0.7092831411238947
+    }
+  ],
+  "interpretation": "requested 0/1/2/>=3 trace-level grouping is degenerate"
+}

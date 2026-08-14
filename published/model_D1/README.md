@@ -27,3 +27,7 @@ probability, prediction = predictor.predict(traces)
 
 The published output probability was evaluated on R2 using `hamming_weight == 0` as the
 positive event. `Predictor.positive_event` records this calibration explicitly.
+
+## Stratified overlap analysis
+
+The held-out D1 error-rate sensitivity analysis is published in [`stratified_overlap/`](stratified_overlap/README.md). It reports TPR/TNR with bootstrap confidence intervals and explicitly records the limitation that the valid-ciphertext set does not populate the `0/1/2` overlap bins.
