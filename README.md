@@ -225,10 +225,11 @@ R2 test labels are opened only after the model, preprocessing statistics, checkp
 
 ## Frozen evaluation and inference
 
-The curated 80,000-trace D1 checkpoint is published in
-[`published/model_D1`](published/model_D1). It contains only the frozen model,
-preprocessing parameters, metrics, checksums, and model card; dataset snapshots,
-raw traces, and per-trace predictions are intentionally excluded.
+Curated frozen checkpoints are published in [`published/model_D1`](published/model_D1),
+[`published/model_D2`](published/model_D2), and [`published/model_D3`](published/model_D3).
+Each directory contains only the model, preprocessing parameters, metrics,
+checksums, and model card; dataset snapshots, raw traces, and per-trace
+predictions are intentionally excluded.
 
 ```python
 from maskedbike_ml.inference import Predictor
